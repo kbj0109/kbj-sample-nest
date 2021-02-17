@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Sequelize } from 'sequelize-typescript';
+import { db } from 'src/database/database.providers';
 
 @Injectable()
 export class UserService {
+  constructor(private sequelize: Sequelize) {}
+
   deleteUser() {
     console.log('/user/delete 들어옴');
     throw new Error('Method not implemented.');
@@ -18,7 +21,10 @@ export class UserService {
     throw new Error('Method not implemented.');
   }
 
-  joinUser() {
+  async joinUser() {
+    const kbj = await db.User.findAll();
+
+    console.log('111', kbj);
     console.log('/user/join 들어옴');
   }
 }

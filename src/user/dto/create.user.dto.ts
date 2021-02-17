@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsIn,
   IsInt,
   IsNotEmpty,
   IsOptional,
@@ -23,13 +24,14 @@ export class CreateUserDto {
   @IsEmail()
   email: string;
 
+  @IsOptional()
   @IsInt()
   @Min(0)
   @Max(100)
-  @IsOptional()
   level: number;
 
   @IsOptional()
   @IsString()
+  @IsIn(['admin', ''])
   role: string;
 }

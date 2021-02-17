@@ -1,22 +1,20 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { SequelizeModuleOptions } from '@nestjs/sequelize';
+import { User } from 'src/user/user.model';
 
 const type = 'mysql';
-const port = 3306;
 const host = 'localhost';
+const port = 3306;
 const username = 'kbj_sample_nest';
 const password = 'kbj_sample_nest';
 const database = 'kbj_sample_nest';
 
-export const dbConfig: TypeOrmModuleOptions = {
-  type,
-  port,
+export const dbConfig: SequelizeModuleOptions = {
+  dialect: type,
   host,
+  port,
   username,
   password,
   database,
-  entities: [` ${__dirname}/../**/*.entity.{js,ts}`],
+  models: [User],
   synchronize: true,
-  // Camel 컬럼명을 Underscore로
-  namingStrategy: new SnakeNamingStrategy(),
 };
